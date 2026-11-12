@@ -1,0 +1,18 @@
+# Ambientes, caches e arquivos locais.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.desenvolvimento/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+*.zip
+
+# Configuracoes locais; modelos, CSV e notebook devem ser versionados.
+.env
+.env.*
+!.env.example

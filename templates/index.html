@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769FF">
+  <meta name="description" content="Demonstração acadêmica do ResolveAI: estimativa de apoio comunitário nas primeiras 72 horas de uma ocorrência.">
+  <title>ResolveAI · Participação da comunidade</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg', v='20261112-blue') }}" type="image/svg+xml" sizes="any">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#simulador">Ir para o simulador</a>
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4M8 14a6 6 0 1 1 8 0c-1 1-1 2-1 4H9c0-2 0-3-1-4Z"/></symbol>
+  <symbol id="i-clean" viewBox="0 0 24 24"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></symbol>
+  <symbol id="i-road" viewBox="0 0 24 24"><path d="M7 3 3 21M17 3l4 18M12 3v4m0 4v3m0 4v3"/></symbol>
+  <symbol id="i-access" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="m4 9 8 2 8-2m-8 2v5m0 0-4 6m4-6 4 6"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m3 10v-3a6 6 0 0 0-2-4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m-5 0a8 8 0 0 1 14-5l2 2M4 15l2 2a8 8 0 0 0 14-5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+</svg>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/" aria-label="ResolveAI, página inicial"><img src="{{ url_for('static', filename='mark.svg') }}" width="40" height="40" alt=""><span>Resolve<span class="brand-ai">AI</span></span></a>
+    <nav aria-label="Navegação principal"><a class="nav-current" href="#simulador">Simulador</a><a href="#como-funciona">Como funciona</a></nav>
+    <button id="health-button" class="health-button" type="button" title="Consultar a disponibilidade da API e dos dois modelos"><span class="status-dot" aria-hidden="true"></span><span id="health-label">Verificando conexão</span><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></button>
+  </div>
+</header>
+<main>
+  <section class="intro" aria-labelledby="page-title">
+    <div><h1 id="page-title">Uma comunidade começa<br>com <span>participação.</span></h1><p>Simule uma ocorrência e descubra a estimativa de receber<br class="desktop-break"> apoio de outro morador nas primeiras 72 horas.</p></div>
+    <div class="simulation-note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><div><strong>Demonstração acadêmica</strong><span>Dados sintéticos. Previsões para explorar<br>o projeto, sem comprovação em uso real.</span></div></div>
+  </section>
+
+  <p id="health-error" class="error-message health-error" role="status" hidden></p>
+  <div class="workspace" id="simulador">
+    <section class="form-panel" aria-labelledby="form-title">
+      <div class="panel-heading"><div><h2 id="form-title">Conte sobre a ocorrência</h2><p>As informações representam o momento de abertura.</p></div><svg class="icon heading-icon" aria-hidden="true"><use href="#i-people"/></svg></div>
+      <div class="scenarios"><span>Comece com um exemplo</span><div class="scenario-options"><button type="button" data-scenario="iluminacao">Iluminação à noite</button><button type="button" data-scenario="baixa">Pouca atividade</button><button type="button" data-scenario="alta">Mais atividade</button></div></div>
+      <form id="prediction-form">
+        <fieldset class="category-fieldset"><legend>Qual é a categoria?</legend><div class="category-options">
+          <label class="category-option"><input type="radio" name="categoria" value="iluminacao" checked><span><svg class="icon" aria-hidden="true"><use href="#i-bulb"/></svg>Iluminação</span></label>
+          <label class="category-option"><input type="radio" name="categoria" value="limpeza"><span><svg class="icon" aria-hidden="true"><use href="#i-clean"/></svg>Limpeza</span></label>
+          <label class="category-option"><input type="radio" name="categoria" value="vias"><span><svg class="icon" aria-hidden="true"><use href="#i-road"/></svg>Vias públicas</span></label>
+          <label class="category-option"><input type="radio" name="categoria" value="acessibilidade"><span><svg class="icon" aria-hidden="true"><use href="#i-access"/></svg>Acessibilidade</span></label>
+        </div></fieldset>
+        <div class="opening-fields">
+          <div class="field"><label for="regiao">Região da comunidade</label><select id="regiao" name="regiao"><option value="norte">Norte</option><option value="sul">Sul</option><option value="leste">Leste</option><option value="oeste">Oeste</option></select></div>
+          <div class="field"><label for="dia_semana">Dia da abertura</label><select id="dia_semana" name="dia_semana"><option value="0">Segunda-feira</option><option value="1">Terça-feira</option><option value="2" selected>Quarta-feira</option><option value="3">Quinta-feira</option><option value="4">Sexta-feira</option><option value="5">Sábado</option><option value="6">Domingo</option></select></div>
+          <div class="field"><label for="hora_abertura">Horário</label><select id="hora_abertura" name="hora_abertura">{% for hour in range(24) %}<option value="{{ hour }}"{% if hour == 19 %} selected{% endif %}>{{ '%02d'|format(hour) }}h</option>{% endfor %}</select></div>
+        </div>
+        <fieldset class="community-fieldset"><legend>O contexto da comunidade</legend><p class="fieldset-note">Somente informações anteriores à abertura. Use valores dentro das faixas observadas no treino; os modelos ainda podem discordar.</p>
+          <div class="context-fields">
+            {% set ativos = faixas_treino.get('moradores_ativos_7d') %}
+            {% set historico = faixas_treino.get('taxa_apoio_anterior_28d') %}
+            {% set recentes = faixas_treino.get('ocorrencias_regiao_7d') %}
+            <div class="field"><label for="moradores_ativos_7d">Moradores ativos</label><div class="input-with-unit"><input id="moradores_ativos_7d" name="moradores_ativos_7d" type="number" {% if ativos %}min="{{ ativos.min }}" max="{{ ativos.max }}"{% else %}disabled{% endif %} step="1" value="40" required aria-describedby="active-help"><span>moradores</span></div><small id="active-help">{% if ativos %}Últimos 7 dias · treino: {{ ativos.min }} a {{ ativos.max }}{% else %}Faixa do treino indisponível{% endif %}</small></div>
+            <div class="field"><label for="taxa_apoio_anterior_28d">Histórico de apoio</label><div class="input-with-unit"><input id="taxa_apoio_anterior_28d" name="taxa_apoio_anterior_28d" type="number" {% if historico %}min="{{ historico.min * 100 }}" max="{{ historico.max * 100 }}"{% else %}disabled{% endif %} step="any" value="50" required aria-describedby="history-help"><span>%</span></div><small id="history-help">{% if historico %}Treino: aprox. {{ ('%.2f'|format(historico.min * 100)).replace('.', ',') }}% a {{ ('%g'|format(historico.max * 100)).replace('.', ',') }}%{% else %}Faixa do treino indisponível{% endif %}</small></div>
+            <div class="field"><label for="ocorrencias_regiao_7d">Ocorrências recentes</label><div class="input-with-unit"><input id="ocorrencias_regiao_7d" name="ocorrencias_regiao_7d" type="number" {% if recentes %}min="{{ recentes.min }}" max="{{ recentes.max }}"{% else %}disabled{% endif %} step="1" value="20" required aria-describedby="recent-help"><span>relatos</span></div><small id="recent-help">{% if recentes %}Últimos 7 dias · treino: {{ recentes.min }} a {{ recentes.max }}{% else %}Faixa do treino indisponível{% endif %}</small></div>
+          </div>
+        </fieldset>
+        <fieldset class="model-fieldset"><legend>Como você quer estimar?</legend><div class="model-options"><label><input type="radio" name="modelo" value="ambos" checked><span>Comparar os dois</span></label><label><input type="radio" name="modelo" value="regressao_logistica"><span>Regressão Logística</span></label><label><input type="radio" name="modelo" value="random_forest"><span>Random Forest</span></label></div></fieldset>
+        <p id="form-error" class="error-message" role="alert" hidden></p>
+        <div class="form-actions"><button id="predict-button" class="button-primary" type="submit" {% if not faixas_treino %}disabled{% endif %}><span>Estimar apoio em 72h</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="button-reset" type="reset">Recomeçar</button></div>
+      </form>
+    </section>
+
+    <section class="results-panel" aria-labelledby="results-title" aria-busy="false">
+      <div class="results-heading"><h2 id="results-title">Participação estimada</h2><span class="window-label">Primeiras 72 horas</span></div>
+      <p id="result-status" class="result-status" role="status" aria-live="polite">Preencha a ocorrência para começar.</p>
+      <div id="empty-state" class="empty-state"><svg class="community-diagram" viewBox="0 0 240 135" fill="none" aria-hidden="true"><path d="M60 83 120 44l60 39M60 83h120" stroke="#98b6fa" stroke-width="1.5" stroke-dasharray="4 5"/><circle cx="120" cy="44" r="25" fill="#e9f0ff"/><circle cx="60" cy="83" r="20" fill="#e9f0ff"/><circle cx="180" cy="83" r="20" fill="#e9f0ff"/><path d="M109 38h22v12h-8l-7 5v-5h-7V38Z" stroke="#1769FF" stroke-width="1.6" stroke-linejoin="round"/><path d="m53 83 5 5 10-11m105 6 5 5 10-11" stroke="#1769FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Do relato ao primeiro apoio.</h3><p>Os modelos analisam o contexto da abertura<br>e estimam a possibilidade de participação.</p><span class="empty-caption">Altere o cenário. Compare. Explore.</span></div>
+      <div id="prediction-results" hidden></div>
+      <div class="result-footnote"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p>A estimativa orienta a divulgação do relato. Ela não confirma a resolução do problema nem altera seu status.</p></div>
+      <details id="technical-details" class="technical-details" hidden><summary>Ver a comunicação com a API</summary><p id="request-description"></p><h3>Dados enviados</h3><pre id="request-json"></pre><h3>Resposta recebida</h3><pre id="response-json"></pre><button id="download-result" type="button" class="button-download">Baixar resultado em JSON</button></details>
+    </section>
+  </div>
+
+  <section class="how-it-works" id="como-funciona" aria-labelledby="how-title"><div><h2 id="how-title">Uma previsão, um convite à participação.</h2><p>O ResolveAI ajuda a perceber quais relatos podem precisar de mais divulgação entre os vizinhos.</p></div><div class="explanation-list"><div><h3>O que os modelos observam</h3><p>Categoria, região, dia, hora e sinais anteriores de participação. Nenhuma informação futura entra na previsão.</p></div><div><h3>O que a resposta significa</h3><p>A classe indica a estimativa de ter ou não ao menos um apoio válido de outra conta em 72 horas. Probabilidade não é garantia.</p></div><div><h3>Como interpretar a comparação</h3><p>Os algoritmos podem discordar. A Regressão Logística foi selecionada pela validação; os dois continuam disponíveis para demonstração.</p></div></div></section>
+  <details class="method-details"><summary>Entender o histórico e os limites desta demonstração</summary><p>O histórico considera ocorrências semelhantes da mesma região e categoria, com janelas de observação de 72 horas já encerradas antes da abertura atual. A taxa é suavizada por (2 + ocorrências com apoio) / (4 + total); sem histórico, usa-se 50%. O período de aberturas maduras cobre aproximadamente 28 dias.</p><p>A interface e a API aceitam apenas valores entre o mínimo e o máximo observados no conjunto de treino, registrados junto dos modelos. Isso reduz a extrapolação, mas não garante que toda combinação de valores tenha sido representada nem assegura acerto, calibração ou concordância entre os modelos.</p><p>O campo em porcentagem da interface é convertido para a proporção exigida pela API. Os cenários preenchem apenas entradas fictícias. Toda previsão é calculada na hora pelos pipelines exportados. A simulação não registra ocorrências, apoios ou resoluções e não usa informações reais de moradores.</p></details>
+  <footer><span>ResolveAI <span aria-hidden="true">/</span> Machine Learning & participação comunitária</span><span>Projeto acadêmico · Dados sintéticos</span></footer>
+</main>
+<noscript><p class="noscript-note">Ative o JavaScript do navegador para consultar os modelos pela interface. Os endpoints /health e /predict continuam disponíveis.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,401 @@
+﻿RESOLVEAI — ENTREGA ACADÊMICA DE MACHINE LEARNING
+Dados integralmente sintéticos — simulação acadêmica
+
+INTEGRANTES
+Andrei Oliveira de Sousa — RM 573373
+Felipe Coelho da Fonseca — RM 572133
+Henrique Soares Pereira — RM 569898
+Luiz Felipe Lourenço da Silva — RM 572576
+
+OBJETIVO E ESCOPO
+Estimar, na criação de uma ocorrência, se ela receberá pelo menos um apoio
+válido de outra conta nas próximas 72 horas. Classe 1 = recebeu; classe 0 =
+não recebeu. Só há rótulo após a janela completa. O ResolveAI pode sugerir
+divulgação ao autor quando o modelo prevê ausência de apoio. Essa orientação
+é uma regra textual baseada na classe prevista, não um terceiro modelo de IA.
+Não muda o status da ocorrência e não afirma que o problema foi resolvido.
+Sem prefeitura, SP156, previsão de execução de serviços ou dados reais.
+
+ARQUIVOS DO PACOTE
+dados_resolveai.csv — base efetivamente utilizada, com identificador e alvo.
+ResolveAI_Machine_Learning.ipynb — notebook único executado, com 5 figuras,
+geração, auditoria, exploração, pipelines, comparação, avaliação e exportação.
+modelos_resolveai.joblib — dois pipelines treinados e metadados; não é preciso
+executar o notebook para utilizar a API.
+api_resolveai.py — API REST Flask; lê o joblib uma vez na inicialização.
+templates/index.html — interface de apresentação servida pelo próprio Flask.
+static/app.css e static/app.js — visual e interação da interface, sem CDN.
+Outros recursos locais em static, quando presentes, acompanham a interface.
+integrantes_e_explicacoes.txt — este documento.
+requirements.txt — versões verificadas, inclusive dependências transitivas.
+O ZIP não contém Python, ambiente virtual, instalador ou launcher.
+
+EXECUÇÃO NO WINDOWS — PYTHON 3.13 DE 64 BITS
+Versão efetivamente usada: Python 3.13.9, Windows x64.
+Instale Python 3.13 de 64 bits com o launcher "py" se ainda não o possui:
+https://www.python.org/downloads/release/python-3139/
+Extraia TODO o ZIP e abra o PowerShell na pasta ResolveAI_Entrega extraída.
+Mantenha os arquivos e as pastas templates e static na estrutura extraída.
+Não execute dentro do ZIP nem mova apenas api_resolveai.py para outra pasta.
+
+Na primeira utilização (requer conexão para baixar as bibliotecas):
+    py -0p
+    py -3.13 --version
+    py -3.13 -m pip install --only-binary=:all: -r requirements.txt
+    py -3.13 -m pip check
+    py -3.13 api_resolveai.py
+
+Use sempre "py -3.13", inclusive para o pip. Não use "py" ou "pip" sem a
+versão explícita: eles podem selecionar Python 3.14 ou outro ambiente.
+--only-binary=:all: impede compilação local. Se não houver pacote binário,
+a instalação encerra com erro em vez de tentar compilar. As versões deste
+arquivo foram instaladas com essa opção em Python 3.13.9 x64.
+Para identificar o interpretador e as bibliotecas do mesmo ambiente:
+    py -3.13 -c "import sys, sklearn; print(sys.executable); print(sklearn.__version__)"
+
+Nas próximas utilizações basta:
+    py -3.13 api_resolveai.py
+
+Mantenha o terminal aberto. Ctrl+C encerra o servidor.
+Acesse http://127.0.0.1:5000 no navegador, ou use Ctrl+clique no endereço
+mostrado pelo Flask. A rota inicial agora abre a interface de apresentação.
+A interface e a API usam o mesmo servidor: não é necessário instalar Node,
+iniciar outro processo de frontend ou executar o notebook.
+O servidor local do Flask atende a demonstração acadêmica; não é implantação
+de produção. Se a porta 5000 estiver ocupada, encerre a outra instância.
+Se surgir ModuleNotFoundError, instale requirements.txt com o mesmo
+"py -3.13 -m pip" usado acima; não instale dependências dentro da API.
+O requirements foi verificado em Windows x64; não foi validado em Linux/macOS.
+
+UTILIZAR A INTERFACE NA APRESENTAÇÃO
+1. Inicie a API pelo comando acima e abra http://127.0.0.1:5000.
+2. Confira a indicação de disponibilidade da API e dos modelos na página.
+   Se estiverem indisponíveis, mantenha o terminal aberto e verifique a
+   mensagem; a interface não substitui um arquivo joblib ausente ou inválido.
+3. Preencha as características da ocorrência e o contexto da comunidade.
+   Os campos correspondem às sete entradas já documentadas neste arquivo.
+   Os três campos numéricos de contexto aceitam somente faixas observadas
+   no conjunto de treino. Os limites aparecem junto aos campos; valores
+   externos são bloqueados, sem arredondar ou substituir o que foi digitado.
+   Para a demonstração, os cenários de exemplo apenas preenchem entradas
+   fictícias; as probabilidades não são fixadas no navegador.
+4. Escolha Regressão Logística, Random Forest ou a comparação dos dois.
+5. Execute a previsão. A interface envia POST /predict à API e mostra a
+   estimativa de apoio em 72 horas, a probabilidade e a orientação retornada.
+   Na comparação, cada modelo recebe uma requisição própria com as mesmas
+   características. Não há votação, média ou terceiro modelo combinado.
+6. Altere um cenário e execute novamente para demonstrar como cada modelo
+   responde a outro contexto. Resultados podem divergir porque são modelos
+   diferentes; isso não muda a seleção feita pela validação no notebook.
+7. Use os detalhes técnicos opcionais da página para explicar a integração
+   por JSON. A consulta GET /health continua disponível no navegador e no
+   PowerShell; POST /predict continua disponível a outros sistemas.
+
+Este formulário demonstra a previsão do projeto. Não cria contas, grava
+ocorrências ou registra apoios reais. Não há banco de dados nem persistência
+de relatos: o contexto é fornecido para uma simulação de abertura. Os modelos
+continuam carregados do joblib e não são treinados ao usar a interface.
+A identificação de dados sintéticos deve permanecer visível na apresentação.
+Não use o resultado para afirmar resolução, execução de serviço público ou
+validação do comportamento de moradores reais.
+
+FAIXAS ACEITAS NA INTERFACE E NA API
+- Moradores ativos: 14 a 129, contas distintas.
+- Ocorrências recentes: 12 a 46, relatos.
+- Histórico de apoio: 0.142857142857 a 0.75 na API; aproximadamente
+  14,29% a 75% no formulário. O limite inferior exato é usado na validação;
+  o texto em porcentagem é arredondado apenas para facilitar a leitura.
+Dia da semana e horário mantêm 0–6 e 0–23, respectivamente.
+
+Esses limites são os mínimos e máximos de cada entrada numérica APENAS no
+treino temporal. O notebook os calcula e grava em metadados.faixas_treino no
+joblib. API e interface leem os mesmos metadados, sem consultar ou recalcular
+faixas pelo CSV durante o uso. Não se usam validação ou teste para ampliar
+os limites. É necessário manter o joblib atualizado junto do código atual.
+Valores antes aceitos pelo contrato amplo, como 200 moradores, 100% de
+histórico ou 1.000 relatos, deixam de ser admitidos neste demonstrador.
+A API também bloqueia requisições diretas fora das faixas com HTTP 400,
+antes de executar a previsão; a proteção não depende apenas do navegador.
+
+Essa é uma proteção contra extrapolação extrema, não uma garantia de que
+o modelo foi bem treinado para qualquer combinação dos valores aceitos.
+Os limites são individuais: uma combinação pode ser pouco frequente ou
+não aparecer no treino. A proteção não calibra probabilidades, não assegura
+acerto e não obriga os classificadores a concordarem. As limitações dos
+dados sintéticos continuam valendo dentro das faixas.
+
+CONSULTA DE SAÚDE — EM UM SEGUNDO TERMINAL POWERSHELL
+    Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:5000/health' | ConvertTo-Json -Depth 5
+
+Resposta de saúde HTTP 200 quando tudo está disponível:
+{
+  "api_disponivel": true,
+  "dados_sinteticos": true,
+  "modelos": {
+    "random_forest": true,
+    "regressao_logistica": true
+  },
+  "status": "ok"
+}
+
+POST /predict aceita exatamente dois campos no objeto JSON:
+"modelo" e "caracteristicas". Não admite campos extras ou faltantes.
+Modelo: regressao_logistica ou random_forest (escolha obrigatória).
+Características obrigatórias:
+- categoria: iluminacao, limpeza, vias ou acessibilidade (texto exato).
+- regiao: norte, sul, leste ou oeste (regiões fictícias; texto exato).
+- dia_semana: inteiro 0–6; segunda = 0, domingo = 6.
+- hora_abertura: inteiro 0–23, horário local de São Paulo.
+- moradores_ativos_7d: inteiro de 14 a 129, contas distintas com sessões na
+  região em [abertura - 7 dias, abertura). A simulação tem 200 contas por
+  região, mas a API restringe a entrada à faixa efetivamente vista no treino.
+- taxa_apoio_anterior_28d: número finito de 0.142857142857 a 0.75. É uma proporção,
+  não o percentual exibido no formulário. Na mesma região e categoria,
+  considerar aberturas a partir de abertura - 31 dias e somente janelas de
+  72 horas encerradas ANTES da abertura atual. Usar (2 + positivos)/(4 + total).
+  Sem histórico, usar 0.5. O intervalo de aberturas maduras cobre 28 dias.
+- ocorrencias_regiao_7d: inteiro de 12 a 46, aberturas na mesma região nos sete
+  dias anteriores, excluindo a atual; não indica situação de resolução.
+Booleanos, números entre aspas, contadores com casas decimais, NaN/Infinity e
+chaves JSON repetidas são rejeitados. As faixas observadas no treino são
+validadas no servidor, mas não garantem a representatividade da combinação.
+O sistema integrador deve calcular os históricos com dados anteriores; a API
+verifica o formato e os limites, mas não consulta um banco nem audita sua origem.
+
+EXEMPLO COMPLETO DE REQUISIÇÃO NO POWERSHELL — AMBOS OS MODELOS
+    $corpo = @{
+        modelo = 'regressao_logistica'
+        caracteristicas = @{
+            categoria = 'iluminacao'
+            regiao = 'norte'
+            dia_semana = 2
+            hora_abertura = 19
+            moradores_ativos_7d = 40
+            taxa_apoio_anterior_28d = 0.5
+            ocorrencias_regiao_7d = 20
+        }
+    }
+    $json = $corpo | ConvertTo-Json -Depth 5
+    Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:5000/predict' -ContentType 'application/json' -Body $json | ConvertTo-Json -Depth 5
+
+    $corpo.modelo = 'random_forest'
+    $json = $corpo | ConvertTo-Json -Depth 5
+    Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:5000/predict' -ContentType 'application/json' -Body $json | ConvertTo-Json -Depth 5
+
+As entradas deste exemplo contêm apenas caracteres ASCII. As respostas JSON
+usam UTF-8. Probabilidades abaixo são saídas reais, não respostas fixas da API.
+Pequenas diferenças nos últimos dígitos podem ocorrer entre plataformas.
+
+Modelo: regressao_logistica
+Entrada completa:
+{
+  "modelo": "regressao_logistica",
+  "caracteristicas": {
+    "categoria": "iluminacao",
+    "regiao": "norte",
+    "dia_semana": 2,
+    "hora_abertura": 19,
+    "moradores_ativos_7d": 40,
+    "taxa_apoio_anterior_28d": 0.5,
+    "ocorrencias_regiao_7d": 20
+  }
+}
+Resposta HTTP 200 efetivamente obtida:
+{
+  "aviso": "Simulação acadêmica; não comprova apoio real nem resolução do problema.",
+  "dados_sinteticos": true,
+  "modelo": "regressao_logistica",
+  "orientacao": "Acompanhe a participação da comunidade nesta ocorrência.",
+  "previsao_apoio_72h": 1,
+  "probabilidade_apoio_72h": 0.6121980959327932
+}
+
+Modelo: random_forest
+Entrada completa:
+{
+  "modelo": "random_forest",
+  "caracteristicas": {
+    "categoria": "iluminacao",
+    "regiao": "norte",
+    "dia_semana": 2,
+    "hora_abertura": 19,
+    "moradores_ativos_7d": 40,
+    "taxa_apoio_anterior_28d": 0.5,
+    "ocorrencias_regiao_7d": 20
+  }
+}
+Resposta HTTP 200 efetivamente obtida:
+{
+  "aviso": "Simulação acadêmica; não comprova apoio real nem resolução do problema.",
+  "dados_sinteticos": true,
+  "modelo": "random_forest",
+  "orientacao": "Considere compartilhar o relato com os vizinhos para ampliar sua divulgação.",
+  "previsao_apoio_72h": 0,
+  "probabilidade_apoio_72h": 0.4840832209840208
+}
+
+CÓDIGOS HTTP
+200: consulta ou previsão realizada.
+400: JSON malformado, campo faltante/extra, modelo ou valor inválido, inclusive
+característica numérica fora da faixa de treino; a mensagem informa o limite.
+404: rota inexistente; 405: método não permitido.
+413: corpo acima de 16 KiB; 415: Content-Type diferente de JSON.
+503: arquivo de modelos ausente, corrompido ou incompatível.
+500: falha inesperada ao executar a inferência (mensagem JSON genérica;
+detalhes no terminal do servidor).
+Com modelo ausente/incompatível, /health continua acessível com status 503,
+api_disponivel=true e os dois modelos indisponíveis. Uma previsão válida
+também retorna 503. Restaure o arquivo entregue e instale requirements.txt.
+O joblib usa componentes padrão, sem classes personalizadas ou caminhos
+pessoais. A API exige as versões de numpy/pandas/scipy/scikit-learn/joblib
+registradas no treinamento. Carregue apenas artefatos joblib confiáveis.
+
+ABRIR E EXECUTAR O NOTEBOOK
+Na pasta da entrega, depois de instalar requirements.txt:
+    py -3.13 -m ipykernel install --user --name resolveai-313 --display-name "ResolveAI Python 3.13"
+    py -3.13 -m notebook ResolveAI_Machine_Learning.ipynb
+No navegador, selecione o kernel "ResolveAI Python 3.13" e use a opção
+de reiniciar o kernel e executar todas as células. A primeira célula confere
+Python 3.13 e mostra as versões. Não selecione um kernel de Python 3.14.
+O registro do kernel é necessário apenas na primeira utilização.
+Mantenha o terminal do Jupyter aberto durante o uso; Ctrl+C encerra o serviço.
+Alternativa, execução integral sem interface, após registrar esse kernel:
+    py -3.13 -m nbconvert --to notebook --execute --inplace --ExecutePreprocessor.kernel_name=resolveai-313 --ExecutePreprocessor.timeout=240 ResolveAI_Machine_Learning.ipynb
+O notebook entregue já contém saídas e gráficos. Reexecutá-lo verifica o CSV
+contra a semente fixa e sobrescreve o joblib com os mesmos pipelines. Se o
+CSV estiver ausente, o código de geração o recria. Reinicie a API após
+qualquer nova exportação: ela não recarrega os modelos em cada requisição.
+
+DADOS, HIPÓTESES E AUSÊNCIA DE VAZAMENTO
+Uma ocorrência por linha, dados locais fictícios. 4.000 aberturas sorteadas de
+01/12/2025 a 31/07/2026; dezembro apenas aquece os históricos. O CSV possui
+3.458 linhas, todas com observação completa até a extração de 04/08/2026.
+Semente única: 20261112. Não se gerou cada classe separadamente.
+Exposições futuras seguem Poisson com efeitos inventados de atividade,
+categoria, horário, fim de semana e competição entre relatos. Atenção futura
+lognormal representa variação não observada. Uma exposição pode gerar uma
+tentativa de apoio até 96 horas; somente os apoios válidos até 72 horas
+produzem classe 1. Não se trocaram rótulos nem se adicionou ruído ao alvo.
+Conta autora, conta não habilitada e apoio duplicado à mesma ocorrência não
+valem. Tentativas são processadas em ordem de tempo por ocorrência.
+Os contadores olham apenas para o passado. A taxa histórica lê somente
+resultados com janela já encerrada. Probabilidade interna, atenção futura,
+contas e eventos de apoio ficam fora das entradas da API e do CSV.
+O dicionário completo, código gerador e auditoria por eventos estão no notebook.
+
+Separação fixa: treino 2.215 linhas, validação 598, teste 555. Outras 90 linhas
+ficam nos intervalos de maturação. O último resultado do treino já é conhecido
+antes da primeira abertura de validação; o mesmo vale de validação para teste.
+Não se misturam registros entre conjuntos. No uso sequencial simulado, os
+históricos são atualizados com eventos passados, sem retreinar os modelos.
+Pré-processamento aprendido apenas no treino, dentro de cada pipeline.
+Nenhum ajuste do gerador foi feito para atingir uma métrica ou favorecer modelo.
+Os filtros de entrada foram acrescentados para evitar extrapolação extrema
+na apresentação. Nenhum registro foi recortado, alterado ou removido do CSV
+por causa deles. A exportação reproduzível passou a registrar as faixas de
+treino; algoritmos, configurações, semente e critério de seleção permanecem
+os mesmos. Os classificadores não foram ajustados para concordar entre si.
+
+RESULTADOS EFETIVAMENTE OBTIDOS
+Critério prévio: F1 macro na validação, limiar 0.5 e configurações fixas.
+Regressão Logística é um classificador, apesar do nome. Random Forest também
+é de classificação. DummyClassifier é somente a referência, não um dos dois
+modelos exigidos. Os candidatos foram exportados sem retreino após seleção.
+
+Modelo                 | F1 val | F1 teste | Acurácia teste | Brier teste
+referencia_dummy       | 0.3618 | 0.3584 | 0.5586 | 0.2468
+regressao_logistica    | 0.5715 | 0.5879 | 0.6126 | 0.2360
+random_forest          | 0.5398 | 0.5948 | 0.6360 | 0.2327
+
+A Regressão Logística foi escolhida pela validação (diferença de F1 macro
+aproximadamente 0.0317). No teste, a Random Forest teve F1 macro maior por
+aproximadamente 0.0070: diferença pequena, sem demonstração de significância.
+A ordem invertida no teste não muda a escolha anterior. Ambos superaram o
+Dummy em F1 macro neste teste. Precisão, recall, F1 e suporte por classe,
+matrizes de confusão, probabilidades e importância por permutação estão no
+notebook. Brier menor é melhor; não prova calibração fora da simulação.
+As métricas acima são da avaliação original no conjunto de teste completo.
+O filtro da API é uma regra adicional de admissibilidade de entradas; não
+constitui nova avaliação, recalibração ou melhoria comprovada das métricas.
+No treino, houve 252 casos sem apoio entre os relatos de atividade alta e
+177 com apoio entre os de atividade baixa (quartis superior e inferior).
+Foram encontrados 117 grupos com pelo menos cinco contextos aproximados e
+ambos os resultados. Não houve separação perfeita das classes.
+
+LIMITAÇÕES
+Os parâmetros são inventados e nenhum registro representa moradores reais.
+Métricas não comprovam desempenho em uso real, nem efeito causal da sugestão.
+Uma semente e uma partição temporal não demonstram superioridade geral.
+Históricos e sessões compartilhados criam dependências entre ocorrências.
+Falso positivo: prever apoio que não vem pode omitir uma sugestão útil.
+Falso negativo: prever ausência quando houve apoio pode sugerir divulgação
+desnecessária. Não apoiar não significa irrelevância ou falsidade do relato.
+Atividade e região podem refletir desigualdade digital. Antes de uso real:
+obter dados com governança, testar outros períodos e comunidades, avaliar
+calibração e vieses e acompanhar mudanças. Esta entrega não realiza isso.
+A interface local foi acrescentada para demonstrar os modelos usando a API.
+Não há chatbot, banco, Docker, nuvem, visão computacional ou previsão de
+resolução. O servidor demonstrativo é local e sem autenticação.
+Mesmo dentro dos mínimos e máximos do treino, combinações raras e relações
+inventadas podem produzir probabilidades diferentes ou previsões erradas.
+Estar dentro das faixas não comprova qualidade preditiva com moradores reais.
+
+VERIFICAÇÕES REALIZADAS
+- Python 3.13.9 x64, instalação com --only-binary=:all: e pip check sem conflitos.
+- Notebook completo em kernel novo, sem erros, com saídas e cinco figuras.
+- CSV lido e comparado com a geração reproduzida; alvo auditado por eventos,
+  sem ausências, duplicidades ou violações dos limites e da maturação temporal.
+- Dois pipelines carregados do joblib; probabilidades conferidas após exportar.
+- API iniciada em processo separado, com diretório de trabalho diferente.
+- /health e /predict para cada modelo por HTTP real; 42 entradas válidas
+  verificadas no cliente Flask e comparadas diretamente com os pipelines.
+- 27 verificações de entradas/rotas/métodos/tamanhos inválidos, além dos cenários
+  de modelo ausente, arquivo corrompido e metadados de versão incompatíveis.
+- API executada também com somente api_resolveai.py e joblib em outra pasta,
+  sem CSV ou notebook; inferência não depende de execução ou treinamento.
+- ZIP aberto com teste de integridade e todos os arquivos do pacote
+  conferidos byte a byte contra os originais.
+- Pacote extraído em outra pasta e verificação da API repetida nesse local.
+- Exemplos PowerShell de consulta e previsão executados contra o servidor.
+- Interface verificada por requisições ao cliente de testes do Flask: GET /
+  retorna HTML 200; CSS, JavaScript e SVG retornam 200 com tipos corretos.
+- Os sete campos e a seleção de modelos foram conferidos no HTML renderizado.
+  Previsões POST dos dois modelos conferidas com os pipelines; GET / continua
+  disponível quando o joblib está ausente, enquanto /health retorna 503.
+- Checagens da interface repetidas na pasta extraída, a partir de diretório
+  de trabalho diferente. Essas verificações não executam o JavaScript no
+  navegador nem validam layout ou cliques da interface.
+- Limites do joblib conferidos contra o conjunto de treino temporal; limites
+  mínimo/máximo do HTML conferidos, incluindo a conversão de proporção para %.
+- 22 casos válidos de limites, bordas e cenários; 16 casos rejeitados,
+  incluindo as entradas da apresentação com 200 moradores/100%/1.000 relatos
+  e com 300 relatos. Em requisições diretas, verificou-se que os pipelines
+  não foram chamados para entradas fora da faixa. Checagens repetidas no ZIP
+  extraído; não constituem teste de cliques ou validação visual no navegador.
+
+LIMITE DA VERIFICAÇÃO DO AMBIENTE
+Na verificação inicial, o launcher "py" da máquina de desenvolvimento não
+possuía instalação 3.13 registrada. A execução real utilizou um Python 3.13.9
+portátil, isolado, por caminho explícito, fora do ZIP. Portanto, a resolução
+do comando "py -3.13" não foi verificada nesse ambiente inicial. Os comandos
+documentados requerem a instalação padrão do Python
+3.13 com launcher no computador de destino. O notebook foi executado via
+nbclient; a abertura interativa da interface do Jupyter não foi verificada.
+Não foi feita execução em outro computador físico ou com moradores reais.
+
+RUBRICA E ENVIO
+Dados (10): CSV + geração/documentação. Notebook (60): exploração, preparo,
+dois modelos, referência e avaliação. Modelos (10): pipelines exportados.
+Flask (20): API validada consumindo os dois modelos pré-treinados.
+O pacote está preparado para o grupo enviar pelo Portal do Aluno.
+Prazo informado pelo grupo: 19/11/2026 às 23h55, horário de São Paulo.
+Não foi enviado ao Portal e não há garantia de nota ou aceitação da simulação.
+
+REFERÊNCIAS TÉCNICAS
+https://scikit-learn.org/1.6/common_pitfalls.html
+https://scikit-learn.org/1.6/model_persistence.html
+https://scikit-learn.org/1.6/modules/model_evaluation.html
+https://flask.palletsprojects.com/en/3.1.x/
+
+SHA-256 DO CSV DE TREINAMENTO
+2bc1b471de06354258c134684c7c13a8ce86bff25f8d0cca921d9d149df5ca9c

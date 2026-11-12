@@ -1,0 +1,9 @@
+# Dependencias do servico Flask no Linux. Notebook/local: requirements.txt.
+# Manter as cinco versoes de ML iguais as registradas no joblib.
+Flask==3.1.1
+numpy==2.2.6
+pandas==2.2.3
+scipy==1.15.3
+scikit-learn==1.6.1
+joblib==1.5.1
+gunicorn==27.0.0
