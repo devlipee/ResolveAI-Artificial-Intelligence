@@ -967,3 +967,48 @@ input::placeholder { color: #6b7280;
 
 }
 
+
+/* SP156: quatro informações, com nomes de serviços preservados por inteiro. */
+.sp156-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;margin-top:26px}
+.sp156-fields .service-field,.sp156-fields .day-field{grid-column:1/-1}
+.sp156-fields .field select{min-height:46px;height:auto;padding:10px 12px;text-overflow:ellipsis}
+.selected-service{font-size:13px;line-height:1.55;color:var(--muted);overflow-wrap:anywhere;margin:9px 0 0}
+.empty-clock{width:52px;height:52px;stroke-width:1.2;color:var(--primary);margin:0 auto 21px}
+.empty-state h3{max-width:26ch;margin-left:auto;margin-right:auto;line-height:1.4}
+.metrics-scroll{overflow-x:auto;margin-top:15px}
+.metrics-table{width:100%;max-width:760px;border-collapse:collapse;font-size:13px;text-align:left}
+.metrics-table caption{text-align:left;color:var(--muted);margin-bottom:12px}
+.metrics-table th,.metrics-table td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line)}
+.metrics-table thead th{font-weight:650;color:var(--ink)}
+.metrics-table tbody th{font-weight:500}
+.metrics-table td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.method-details a:hover{color:var(--primary)}
+footer span{overflow-wrap:anywhere}
+@media(max-width:760px){.sp156-fields{gap:17px 12px}.sp156-fields .field label{font-size:14px}.sp156-fields .field select{font-size:16px}.intro h1{font-size:32px}.results-heading{align-items:flex-start}.window-label{white-space:normal;text-align:right}.model-result-header{align-items:flex-start}.model-result h3{max-width:20ch}.form-actions{gap:10px}.button-primary{gap:10px}}
+@media(max-width:500px){.sp156-fields{grid-template-columns:1fr}.sp156-fields .service-field,.sp156-fields .day-field{grid-column:auto}.health-button{max-width:156px}.intro h1{font-size:30px}.model-result .probability{font-size:31px}.model-options span{font-size:12px}.metrics-table{font-size:12px}.metrics-table th,.metrics-table td{padding-right:10px}}
+
+/* Catalogo fechado: contexto legivel e sem campos livres. */
+.scenario-field{margin-top:26px;min-width:0}
+.scenario-field select{max-width:100%;width:100%;text-overflow:ellipsis;font-size:16px}
+.scenario-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 18px;margin:24px 0 20px}
+.scenario-facts div{min-width:0}.scenario-facts .scenario-service{grid-column:1/-1}
+.scenario-facts dt{font-size:13px;color:var(--muted);margin:0 0 7px}
+.scenario-facts dd{font-size:16px;font-weight:600;margin:0;line-height:1.55;overflow-wrap:anywhere}
+.scenario-coverage{padding:16px 0 0;border-top:1px solid var(--line);font-size:13px;line-height:1.6}
+.scenario-coverage p{margin:0 0 8px}.scenario-coverage .coverage-note{color:var(--muted)}
+@media(max-width:500px){.scenario-facts{grid-template-columns:1fr}.scenario-facts .scenario-service{grid-column:auto}}
+
+/* Faixas tornam os dois tipos de estimativa faceis de encontrar. */
+.scenario-shortcuts{margin-top:24px}
+.scenario-shortcuts>p:first-child{font-size:14px;font-weight:600;margin:0 0 10px}
+.scenario-shortcut-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.scenario-shortcut-buttons button{min-height:44px;padding:10px 16px;border:1px solid var(--control-border);border-radius:7px;background:#fff;font-size:14px;font-weight:600}
+.scenario-shortcut-buttons button:hover:not(:disabled){background:var(--primary-soft);border-color:var(--primary)}
+.scenario-shortcut-buttons button[aria-pressed=true]{background:var(--primary);color:#fff;border-color:var(--primary)}
+.scenario-shortcut-buttons button:disabled{cursor:default}
+.scenario-shortcuts .chance-help{max-width:70ch;font-size:12px;line-height:1.65;color:var(--muted);margin:12px 0 0}
+.scenario-shortcuts+.scenario-field{margin-top:22px}
+.scenario-band{display:inline-block;margin:22px 0 0;padding:5px 9px;border-radius:5px;background:var(--primary-soft);color:#000;font-size:13px;font-weight:600;line-height:1.5}
+.scenario-band[data-band=baixa],.scenario-band[data-band=intermediaria]{background:#f0f3f8}
+.scenario-band+.scenario-facts{margin-top:17px}
+@media(max-width:500px){.scenario-shortcut-buttons{gap:8px}.scenario-shortcut-buttons button{flex:1;min-width:125px;padding:10px 12px}.scenario-band{max-width:100%}}

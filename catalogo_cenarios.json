@@ -1,0 +1,778 @@
+{
+  "schema": 1,
+  "entradas": [
+    "servico",
+    "distrito",
+    "canal",
+    "dia_semana"
+  ],
+  "modelo_sha256": "8dc09ef8525c9529564ace012f94444f6245495c50aabed04453d5f24030a9e9",
+  "csv_sha256": "ebef96a8f79dbac52650a6483ccc0d016725d5283f760681a581eedcab86cba8",
+  "politica": {
+    "min_treino_servico": 200,
+    "min_treino_combinacao": 8,
+    "min_validacao_combinacao": 2,
+    "min_treino_contexto": 20,
+    "min_validacao_servico": 50,
+    "min_acuracia_validacao_ambos": 0.75,
+    "exemplos_por_faixa": 5
+  },
+  "assinatura_selecao": "7ccdbf21ad98d3298f913ab42a66786ff7905f28363c164bf70410c50e7dcf29",
+  "cenarios": [
+    {
+      "id": "sp156-d869aa3f6e3db7f842d0",
+      "nome": "Poluicao sonora (PSIU) - SAUDE - PORTAL - sabado",
+      "caracteristicas": {
+        "servico": "Reclamação de poluição sonora - PSIU",
+        "distrito": "SAUDE",
+        "canal": "PORTAL",
+        "dia_semana": 5
+      },
+      "cobertura": {
+        "treino_combinacao": 17,
+        "validacao_combinacao": 4,
+        "treino_contexto": 46,
+        "validacao_contexto": 7,
+        "treino_servico": 1591,
+        "validacao_servico": 598
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.010196275856873861,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.021602854405675075,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 592,
+        "1": 6
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.01675414567810145,
+        "random_forest": 0.07785161790316976
+      },
+      "faixa_chance": "baixa"
+    },
+    {
+      "id": "sp156-495d8cf8bf819e85192c",
+      "nome": "Poluicao sonora (PSIU) - SANTA CECILIA - PORTAL - sexta-feira",
+      "caracteristicas": {
+        "servico": "Reclamação de poluição sonora - PSIU",
+        "distrito": "SANTA CECILIA",
+        "canal": "PORTAL",
+        "dia_semana": 4
+      },
+      "cobertura": {
+        "treino_combinacao": 10,
+        "validacao_combinacao": 2,
+        "treino_contexto": 32,
+        "validacao_contexto": 10,
+        "treino_servico": 1591,
+        "validacao_servico": 598
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.010196275856873861,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.021602854405675075,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 592,
+        "1": 6
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.014558573577134465,
+        "random_forest": 0.0740996314146508
+      },
+      "faixa_chance": "baixa"
+    },
+    {
+      "id": "sp156-a751973dd4271bb93a88",
+      "nome": "Poluicao sonora (PSIU) - CURSINO - PORTAL - domingo",
+      "caracteristicas": {
+        "servico": "Reclamação de poluição sonora - PSIU",
+        "distrito": "CURSINO",
+        "canal": "PORTAL",
+        "dia_semana": 6
+      },
+      "cobertura": {
+        "treino_combinacao": 8,
+        "validacao_combinacao": 4,
+        "treino_contexto": 28,
+        "validacao_contexto": 16,
+        "treino_servico": 1591,
+        "validacao_servico": 598
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.010196275856873861,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.021602854405675075,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 592,
+        "1": 6
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.031972977200738134,
+        "random_forest": 0.09886014014558461
+      },
+      "faixa_chance": "baixa"
+    },
+    {
+      "id": "sp156-a5f7f72cc309557e09d2",
+      "nome": "Poluicao sonora (PSIU) - SAUDE - PORTAL - sexta-feira",
+      "caracteristicas": {
+        "servico": "Reclamação de poluição sonora - PSIU",
+        "distrito": "SAUDE",
+        "canal": "PORTAL",
+        "dia_semana": 4
+      },
+      "cobertura": {
+        "treino_combinacao": 8,
+        "validacao_combinacao": 2,
+        "treino_contexto": 46,
+        "validacao_contexto": 7,
+        "treino_servico": 1591,
+        "validacao_servico": 598
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.010196275856873861,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9899665551839465,
+          "f1_macro": 0.49747899159663866,
+          "brier": 0.021602854405675075,
+          "matriz": [
+            [
+              592,
+              0
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 592,
+        "1": 6
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.014694168715619637,
+        "random_forest": 0.07251347314774814
+      },
+      "faixa_chance": "baixa"
+    },
+    {
+      "id": "sp156-aed97f1c9129842ab84c",
+      "nome": "Guias, sarjetas e sarjetões - solicitar manutenção - ITAQUERA - PORTAL - quarta-feira",
+      "caracteristicas": {
+        "servico": "Guias, sarjetas e sarjetões - solicitar manutenção",
+        "distrito": "ITAQUERA",
+        "canal": "PORTAL",
+        "dia_semana": 2
+      },
+      "cobertura": {
+        "treino_combinacao": 8,
+        "validacao_combinacao": 2,
+        "treino_contexto": 30,
+        "validacao_contexto": 6,
+        "treino_servico": 1528,
+        "validacao_servico": 444
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.8445945945945946,
+          "f1_macro": 0.47185684486355095,
+          "brier": 0.1252226925195535,
+          "matriz": [
+            [
+              374,
+              1
+            ],
+            [
+              68,
+              1
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.8445945945945946,
+          "f1_macro": 0.45787545787545786,
+          "brier": 0.1378832326326399,
+          "matriz": [
+            [
+              375,
+              0
+            ],
+            [
+              69,
+              0
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 375,
+        "1": 69
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.16736481575748202,
+        "random_forest": 0.24231282717898267
+      },
+      "faixa_chance": "baixa"
+    },
+    {
+      "id": "sp156-7b09c720829cea21c495",
+      "nome": "Remocao de entulho - VILA MEDEIROS - PORTAL - sexta-feira",
+      "caracteristicas": {
+        "servico": "Entulho e grandes objetos em via pública - solicitar remoção",
+        "distrito": "VILA MEDEIROS",
+        "canal": "PORTAL",
+        "dia_semana": 4
+      },
+      "cobertura": {
+        "treino_combinacao": 33,
+        "validacao_combinacao": 9,
+        "treino_contexto": 158,
+        "validacao_contexto": 66,
+        "treino_servico": 7861,
+        "validacao_servico": 2875
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.014422547493118333,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.016214158580265814,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 41,
+        "1": 2834
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.9831570751756689,
+        "random_forest": 0.9394558058150049
+      },
+      "faixa_chance": "alta"
+    },
+    {
+      "id": "sp156-50aa4ef9f5cdaaa9e263",
+      "nome": "Remocao de entulho - VILA MEDEIROS - PORTAL - quinta-feira",
+      "caracteristicas": {
+        "servico": "Entulho e grandes objetos em via pública - solicitar remoção",
+        "distrito": "VILA MEDEIROS",
+        "canal": "PORTAL",
+        "dia_semana": 3
+      },
+      "cobertura": {
+        "treino_combinacao": 31,
+        "validacao_combinacao": 13,
+        "treino_contexto": 158,
+        "validacao_contexto": 66,
+        "treino_servico": 7861,
+        "validacao_servico": 2875
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.014422547493118333,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.016214158580265814,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 41,
+        "1": 2834
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.9846216347809917,
+        "random_forest": 0.9433863070710855
+      },
+      "faixa_chance": "alta"
+    },
+    {
+      "id": "sp156-3f0c58d7cfafd68012fe",
+      "nome": "Remocao de entulho - SACOMA - CRM - segunda-feira",
+      "caracteristicas": {
+        "servico": "Entulho e grandes objetos em via pública - solicitar remoção",
+        "distrito": "SACOMA",
+        "canal": "CRM",
+        "dia_semana": 0
+      },
+      "cobertura": {
+        "treino_combinacao": 30,
+        "validacao_combinacao": 11,
+        "treino_contexto": 171,
+        "validacao_contexto": 48,
+        "treino_servico": 7861,
+        "validacao_servico": 2875
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.014422547493118333,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.016214158580265814,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 41,
+        "1": 2834
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.9877902035091947,
+        "random_forest": 0.9578339424878581
+      },
+      "faixa_chance": "alta"
+    },
+    {
+      "id": "sp156-dd1f9ed7375c1e1dd4d8",
+      "nome": "Remocao de entulho - SACOMA - CRM - terca-feira",
+      "caracteristicas": {
+        "servico": "Entulho e grandes objetos em via pública - solicitar remoção",
+        "distrito": "SACOMA",
+        "canal": "CRM",
+        "dia_semana": 1
+      },
+      "cobertura": {
+        "treino_combinacao": 30,
+        "validacao_combinacao": 8,
+        "treino_contexto": 171,
+        "validacao_contexto": 48,
+        "treino_servico": 7861,
+        "validacao_servico": 2875
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.014422547493118333,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.016214158580265814,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 41,
+        "1": 2834
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.9895369690234278,
+        "random_forest": 0.9577392434329196
+      },
+      "faixa_chance": "alta"
+    },
+    {
+      "id": "sp156-f60e1dbb32bf699881aa",
+      "nome": "Remocao de entulho - SACOMA - CRM - quarta-feira",
+      "caracteristicas": {
+        "servico": "Entulho e grandes objetos em via pública - solicitar remoção",
+        "distrito": "SACOMA",
+        "canal": "CRM",
+        "dia_semana": 2
+      },
+      "cobertura": {
+        "treino_combinacao": 30,
+        "validacao_combinacao": 8,
+        "treino_contexto": 171,
+        "validacao_contexto": 48,
+        "treino_servico": 7861,
+        "validacao_servico": 2875
+      },
+      "metricas_validacao_servico": {
+        "regressao_logistica": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.014422547493118333,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9857391304347826,
+          "f1_macro": 0.49640917849010335,
+          "brier": 0.016214158580265814,
+          "matriz": [
+            [
+              0,
+              41
+            ],
+            [
+              0,
+              2834
+            ]
+          ]
+        }
+      },
+      "classes_validacao_servico": {
+        "0": 41,
+        "1": 2834
+      },
+      "probabilidades_estimadas": {
+        "regressao_logistica": 0.9889450971022583,
+        "random_forest": 0.9579759071654405
+      },
+      "faixa_chance": "alta"
+    }
+  ],
+  "avaliacao": {
+    "validacao": {
+      "n": 63,
+      "total_conjunto": 9744,
+      "cobertura": 0.00646551724137931,
+      "classes": {
+        "0": 14,
+        "1": 49
+      },
+      "metricas": {
+        "regressao_logistica": {
+          "acuracia": 1.0,
+          "f1_macro": 1.0,
+          "brier": 0.001130325924811542,
+          "matriz": [
+            [
+              14,
+              0
+            ],
+            [
+              0,
+              49
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 1.0,
+          "f1_macro": 1.0,
+          "brier": 0.005157083706276861,
+          "matriz": [
+            [
+              14,
+              0
+            ],
+            [
+              0,
+              49
+            ]
+          ]
+        },
+        "referencia_dummy": {
+          "acuracia": 0.7777777777777778,
+          "f1_macro": 0.4375,
+          "brier": 0.18843535284621674,
+          "matriz": [
+            [
+              0,
+              14
+            ],
+            [
+              0,
+              49
+            ]
+          ]
+        },
+        "referencia_por_servico": {
+          "acuracia": 1.0,
+          "f1_macro": 1.0,
+          "brier": 0.0014618498734146762,
+          "matriz": [
+            [
+              14,
+              0
+            ],
+            [
+              0,
+              49
+            ]
+          ]
+        }
+      }
+    },
+    "teste": {
+      "n": 44,
+      "total_conjunto": 9695,
+      "cobertura": 0.004538421866941722,
+      "classes": {
+        "0": 15,
+        "1": 29
+      },
+      "metricas": {
+        "regressao_logistica": {
+          "acuracia": 0.9318181818181818,
+          "f1_macro": 0.9198542805100182,
+          "brier": 0.06912937467254553,
+          "matriz": [
+            [
+              12,
+              3
+            ],
+            [
+              0,
+              29
+            ]
+          ]
+        },
+        "random_forest": {
+          "acuracia": 0.9318181818181818,
+          "f1_macro": 0.9198542805100182,
+          "brier": 0.07035563985814504,
+          "matriz": [
+            [
+              12,
+              3
+            ],
+            [
+              0,
+              29
+            ]
+          ]
+        },
+        "referencia_dummy": {
+          "acuracia": 0.6590909090909091,
+          "f1_macro": 0.3972602739726027,
+          "brier": 0.2247284788052931,
+          "matriz": [
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              29
+            ]
+          ]
+        },
+        "referencia_por_servico": {
+          "acuracia": 0.9318181818181818,
+          "f1_macro": 0.9198542805100182,
+          "brier": 0.0691227261897912,
+          "matriz": [
+            [
+              12,
+              3
+            ],
+            [
+              0,
+              29
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "faixas_chance": {
+    "baixa_max": 0.3,
+    "alta_min": 0.7
+  },
+  "selecao_demonstracao": {
+    "modo": "cinco_por_faixa",
+    "candidatos_por_faixa": {
+      "baixa": 5,
+      "alta": 164,
+      "intermediaria": 6
+    },
+    "quantidade_por_faixa": 5,
+    "ranking": [
+      "treino_combinacao decrescente",
+      "validacao_combinacao decrescente",
+      "id crescente"
+    ],
+    "nota": "Exemplos selecionados para demonstracao por faixa e cobertura. A probabilidade define a faixa; seu valor nao desempata candidatos. Nao usamos acertos no teste nem desempenho da combinacao para rankear."
+  },
+  "nota_selecao": "Catalogo demonstrativo com cinco exemplos baixos e cinco altos, filtrados por cobertura e avaliacao do servico na validacao. Ranking por contagens de treino e validacao, com IDs congelados antes de avaliar o recorte do teste. A avaliacao do servico nao equivale a avaliacao da combinacao exata.",
+  "nota_interpretacao": "Os indicadores deste recorte selecionado para demonstracao sao descritivos, nao uma nova validacao independente nem substitutos das metricas globais. Servicos possuem classes concentradas e a referencia por servico pode empatar com os modelos. Cobertura e desempenho historico nao garantem acerto, calibracao nem concordancia em uma nova solicitacao."
+}

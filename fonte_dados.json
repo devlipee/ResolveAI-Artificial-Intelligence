@@ -1,0 +1,57 @@
+{
+  "nome": "Prefeitura de Sao Paulo - SP156, solicitacoes 1o trimestre de 2025",
+  "url": "https://dados.prefeitura.sp.gov.br/dataset/dados-do-sp156",
+  "csv_url": "https://dados.prefeitura.sp.gov.br/dataset/0aecfa2b-aa3a-40d4-8183-0d4351b7fd0a/resource/7c5aeb58-2cad-40ba-9e9e-af1c17cc5070/download/arquivo-final-1-trim-25.csv",
+  "dicionario_url": "https://dados.prefeitura.sp.gov.br/dataset/0aecfa2b-aa3a-40d4-8183-0d4351b7fd0a/resource/e5c102e2-f27a-4e0a-ae99-5948abecff0e/download/dicionario-dados-abertos-sp156-2020-em-diante.txt",
+  "sha256_original": "f9d02a8bf358f019a5851e0d3d05daa236f803f5b22f254b66fd7b69f63e5170",
+  "sha256_csv_usado": "ebef96a8f79dbac52650a6483ccc0d016725d5283f760681a581eedcab86cba8",
+  "download_em": "2026-11-17",
+  "extracao_exata": "Nao informada no recurso. Last-Modified indica modificacao HTTP, nao necessariamente extracao ou publicacao. O arquivo registra fechamentos ate agosto/2026; as aberturas do trimestre sao de janeiro a marco/2025.",
+  "temas": [
+    "Rua e bairro",
+    "Lixo e limpeza"
+  ],
+  "prazo_dias": 7,
+  "dados_sinteticos": false,
+  "auditoria": {
+    "linhas_csv_original": 1048575,
+    "linhas_totalmente_vazias": 305671,
+    "recorte_por_tema_antes_limpeza": 184655,
+    "exclusoes_data_abertura_invalida": 0,
+    "exclusoes_data_finalizacao_invalida": 0,
+    "exclusoes_terminal_sem_data": 36,
+    "exclusoes_janela_imatura": 0,
+    "exclusoes_unicas": 36,
+    "recorte_valido": 184619,
+    "classes_recorte_completo": {
+      "0": 66098,
+      "1": 118521
+    },
+    "status_recorte_completo": {
+      "Finalizada": 171739,
+      "Aberto": 11972,
+      "Cancelada": 859,
+      "Em Andamento": 49
+    },
+    "amostra_n": 60000,
+    "classes_amostra": {
+      "0": 21386,
+      "1": 38614
+    },
+    "datas_amostra": {
+      "inicio": "2025-01-01",
+      "fim": "2025-03-31"
+    },
+    "amostragem": "Amostra uniforme sem reposicao de 60000 registros validos, random_state=20261117, sem estratificacao por alvo. Contagens repetidas de pedidos nao sao removidas por igualdade de entradas.",
+    "sem_enderecos_pessoais": "Nao exportamos logradouro, numero, CEP, coordenadas ou campos pessoais. id_registro e uma referencia a linha no CSV publico, nao numero de protocolo."
+  },
+  "limitacoes": [
+    "As datas da fonte nao incluem horarios; o alvo usa diferenca entre datas em dias corridos.",
+    "Encerramento administrativo inclui cancelamentos com data de fechamento; nao comprova resolucao fisica.",
+    "O servico publicado pode ter sido reclassificado depois da abertura. A avaliacao e retrospectiva, sem validacao prospectiva da classificacao original.",
+    "O CSV publico nao fornece identificador de protocolo; pedidos com os mesmos atributos podem ser solicitacoes distintas.",
+    "A fonte pode ser republicada; o hash fixa a versao utilizada. Resultados sao do recorte Rua e bairro/Lixo e limpeza em Sao Paulo, nao de outras cidades."
+  ],
+  "ultima_modificacao_http_em": "2026-08-10",
+  "periodo": "Aberturas de janeiro a marco de 2025; amostra de 60.000 solicitacoes."
+}
