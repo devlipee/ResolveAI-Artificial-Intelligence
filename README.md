@@ -2,6 +2,16 @@
 
 Projeto de Artificial Intelligence & Chatbot · Global Solution 2026/2 · CitizenTech · FIAP.
 
+## Site e API publicados
+
+**Site de demonstração:** [Abrir o ResolveAI](https://resolveai-artificial-intelligence.onrender.com/).
+
+- **Disponibilidade dos modelos:** [GET /health](https://resolveai-artificial-intelligence.onrender.com/health).
+- **Exemplos aceitos e métricas:** [GET /metadata](https://resolveai-artificial-intelligence.onrender.com/metadata).
+- **Previsão por JSON:** `POST https://resolveai-artificial-intelligence.onrender.com/predict`.
+
+O mesmo serviço Flask disponibiliza o site e a API. Para usar a versão publicada na apresentação, abra o link; a execução local abaixo é uma alternativa.
+
 ## Objetivo
 
 Estimar **encerramento administrativo em até 7 dias corridos**, usando serviço, distrito, canal e dia da abertura, para apoiar o acompanhamento do protocolo.
@@ -20,7 +30,6 @@ ResolveAI_Entrega/
 ├── requirements.txt / requirements-prod.txt / .python-version
 ├── templates/index.html
 ├── static/  (CSS, JavaScript, marca e favicon)
-├── tests/test_api.py
 ├── ResolveAI_Apresentacao_Presencial.pdf
 ├── integrantes_e_explicacoes.txt
 └── README.md
@@ -144,11 +153,7 @@ Os dez exemplos são demonstrativos, não representativos. Seu recorte no teste 
 
 ## Verificação e deploy
 
-```powershell
-.venv\Scripts\python.exe -B -m unittest discover -s tests -v
-```
-
-Os testes conferem previsões reais, catálogo 5/5, entradas inválidas e artefatos ausentes.
+Confira `/health` e `/metadata` pelos links publicados acima. Para verificar a inferência, use a interface ou envie o JSON do exemplo para `POST /predict`.
 
 No Render, mantenha os arquivos na raiz, branch `main` e Python definido em `.python-version`:
 

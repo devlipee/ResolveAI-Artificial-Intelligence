@@ -1,6 +1,13 @@
 RESOLVEAI — DADOS REAIS DO SP156
 Artificial Intelligence & Chatbot · Global Solution 2026/2 · CitizenTech · FIAP
 
+SITE E API PUBLICADOS
+Site: https://resolveai-artificial-intelligence.onrender.com/
+Disponibilidade: GET https://resolveai-artificial-intelligence.onrender.com/health
+Exemplos e métricas: GET https://resolveai-artificial-intelligence.onrender.com/metadata
+Previsão por JSON: POST https://resolveai-artificial-intelligence.onrender.com/predict
+O site publicado permite usar a demonstração sem iniciar o servidor local.
+
 INTEGRANTES
 Andrei Oliveira de Sousa — RM 573373
 Felipe Coelho da Fonseca — RM 572133
@@ -51,7 +58,7 @@ REPRODUZIR E VERIFICAR
 Abra o notebook com: .venv\Scripts\python.exe -m notebook ResolveAI_Machine_Learning.ipynb
 Depois de executar todas as células e exportar o modelo, rode:
 .venv\Scripts\python.exe gerar_catalogo_cenarios.py
-Reinicie a API. Testes: .venv\Scripts\python.exe -B -m unittest discover -s tests -v
+Reinicie a API para carregar os modelos e o catálogo atualizados.
 
 Os exemplos usam cobertura histórica e avaliação por serviço; não garantem acerto
 individual. As métricas do pequeno recorte demonstrativo não substituem o teste
